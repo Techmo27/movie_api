@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-let tenMovies = [];
+let topMovies = [];
 
 let myLogger = (req, res, next) => {
   console.log(req.url);
@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/movies', (req, res) => {
-  res.json(tenMovies);
+  res.json(topMovies);
 });
 
 app.use((err, req, res, next) => {
