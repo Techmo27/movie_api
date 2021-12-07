@@ -1,11 +1,18 @@
 const express = require('express');
-morgan = require('morgan');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const app = express();
 let topMovies = [];
 
 app.use(morgan('common'));
 app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({
+  extend:true
+ }
+));
+app.use(bodyParser.json());
 
 // GET requests
 app.get('/', (req, res) => {
@@ -18,7 +25,8 @@ app.get('/movies', (req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send('An error is found.');
+  next();
 });
 
 // listen for requests
