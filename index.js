@@ -1,13 +1,10 @@
 const express = require('express');
+morgan = require('morgan');
+
 const app = express();
 let topMovies = [];
 
-let myLogger = (req, res, next) => {
-  console.log(req.url);
-  next();
-};
-app.use(myLogger);
-
+app.use(morgan('common'));
 app.use(express.static('public'));
 
 // GET requests
