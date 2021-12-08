@@ -7,13 +7,13 @@ app.use(morgan('common'));
 
 let topMovies = [
   {
-    name: Movie1
+    name: 'Movie1'
   },
   {
-    name: Movie2
+    name: 'Movie2'
   },
   {
-    name: Movie3
+    name: 'Movie3'
   }
 ];
 
