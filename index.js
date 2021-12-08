@@ -1,18 +1,21 @@
 const express = require('express');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');
 
 const app = express();
-let topMovies = [];
 
 app.use(morgan('common'));
-app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({
-  extend:true
- }
-));
-app.use(bodyParser.json());
+let topMovies = [
+  {
+    name: Movie1
+  },
+  {
+    name: Movie2
+  },
+  {
+    name: Movie3
+  }
+];
 
 // GET requests
 app.get('/', (req, res) => {
