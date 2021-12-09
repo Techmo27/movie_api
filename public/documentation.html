@@ -8,13 +8,87 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Documentation Achievement 2 Project:myFlix
+    <h1>Documentation Project: myFlix App
     </h1>
-    <p>This project is about the server-side component of a “movies” web application. The web
-       application will provide users with access to information about different
-       movies, directors, and genres. Users will be able to sign up, update their
-       personal information, and create a list of their favorite movies.
+    <p> By using the myFlix App you are able to receive
+        information on movies, directors, and genres so that you
+        can learn more about movies you've watched or are interested in.
+        Also, you're able to create a profile so you can save data about
+        your favorite movies.
     </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Request</th>
+                <th>HTTP Method</th>
+                <th>URL</th>
+                <th>Response</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Return home of myFlix App</td>
+                <td>GET</td>
+                <td>'/'</td>
+                <td>A welcoming text message.</td>
+            </tr>
+            <tr>
+                <td>Return a list of all movies</td>
+                <td>GET</td>
+                <td>'/movies'</td>
+                <td>An array of JSON objects containing data about all the movies.</td>
+            </tr>
+            <tr>
+                <td>Return data about a single movie by title</td>
+                <td>GET</td>
+                <td>'/movies/:title'</td>
+                <td>A JSON object holding the data about one single movie. It contains information about the title, genre, directors name and film length. It's structured as follows: { title: "Movie1", genre: "Comedy", director: "Tim Burton", film lenght: "120min"}</td>
+            </tr>
+            <tr>
+                <td>Return data about a genre by title</td>
+                <td>GET</td>
+                <td>'/movies/genre/:title'</td>
+                <td>A text message describing the particular genre</td>
+            </tr>
+            <tr>
+                <td>Return data about a director by name</td>
+                <td>GET</td>
+                <td>'/movies/directors/:name'</td>
+                <td>A text message with information about the director (bio, birth year, death year).</td>
+            </tr>
+            <tr>
+                <td>Allow new users to register</td>
+                <td>POST</td>
+                <td>'/users'</td>
+                <td>A JSON object holding data about the user who has been added in the following structure { name: "Sophie Berger", username: "s.berger135", email: "sophieberger@gmail.com", password: "13579sb"}</td>
+            </tr>
+            <tr>
+                <td>Allow users to update their user info</td>
+                <td>PUT</td>
+                <td>'/users/:username'</td>
+                <td>A text message indicating which information about the user has been updated</td>
+            </tr>
+            <tr>
+                <td>Allow users to add a movie to their list of favorites</td>
+                <td>POST</td>
+                <td>'users/:username/favorites/:ID'</td>
+                <td>A JSON object holding data about the movie tthat has been added to the list of favourites, like so: { title: "Movie1", genre: "Comedy", director: "Tim Burton", film lenght: "120min"}</td>
+            </tr>
+            <tr>
+                <td>Allow users to remove a movie to their list of favorites</td>
+                <td>DELETE</td>
+                <td>'users/:username/favorites/:ID'</td>
+                <td>A text message indicating whether the movie was successfully removed</td>
+            </tr>
+            <tr>
+                <td>Allow existing users to deregister</td>
+                <td>DELETE</td>
+                <td>'/users/:username'</td>
+                <td>A text message indicating whether the users account is successfully deleted</td>
+            </tr>
+        </tbody>
+    </table>
+
 	  <script src="#"></script>
   </body>
 </html>
