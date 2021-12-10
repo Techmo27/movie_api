@@ -47,7 +47,7 @@ app.put('/users/:username', (req, res) => {
   res.send('User has successfully changed her/his username!');
 });
 
-app.post('users/:username/favorites/:ID', (req, res) => {
+app.post('users/:username/:favorites/:ID', (req, res) => {
   res.send('User added one movie to her/his favorites list.');
 });
 
