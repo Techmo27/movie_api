@@ -31,6 +31,10 @@ app.get('/movies/:title', (req, res) => {
   res.send('Successful GET request which shows a movie by its title.');
 });
 
+app.get('/genres', (req, res) => {
+  res.send('Successful GET request which sends a list of genres.');
+});
+
 app.get('/genres/:genreName', (req, res) => {
   res.send('Successful GET request which describes the genre of a movie.');
 });
