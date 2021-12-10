@@ -47,7 +47,7 @@ app.put('/users/:username', (req, res) => {
   res.send('User has successfully changed her/his username!');
 });
 
-app.get('/users/:username/favorites', (req, res) => {
+app.get('/users/:username/movies', (req, res) => {
   res.send('Successful GET request that returns a list of users favorites.');
 });
 
