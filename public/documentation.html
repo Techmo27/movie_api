@@ -47,13 +47,13 @@
             <tr>
                 <td>Return data about a genre by title</td>
                 <td>GET</td>
-                <td>'/movies/genre/:title'</td>
+                <td>'/genres/:genre'</td>
                 <td>A text message describing the particular genre</td>
             </tr>
             <tr>
                 <td>Return data about a director by name</td>
                 <td>GET</td>
-                <td>'/movies/directors/:name'</td>
+                <td>'/directors/:name'</td>
                 <td>A text message with information about the director (bio, birth year, death year).</td>
             </tr>
             <tr>
@@ -69,15 +69,21 @@
                 <td>A text message indicating which information about the user has been updated</td>
             </tr>
             <tr>
+                <td>Return users list of favorite movies</td>
+                <td>GET</td>
+                <td>'/users/:username/favorites'</td>
+                <td>An array of JSON objects containing data about all the favorite movies of the user</td>
+            </tr>
+            <tr>
                 <td>Allow users to add a movie to their list of favorites</td>
                 <td>POST</td>
-                <td>'users/:username/favorites/:ID'</td>
+                <td>'/users/:username/favorites/:movieID'</td>
                 <td>A JSON object holding data about the movie tthat has been added to the list of favourites, like so: { title: "Movie1", genre: "Comedy", director: "Tim Burton", film lenght: "120min"}</td>
             </tr>
             <tr>
                 <td>Allow users to remove a movie to their list of favorites</td>
                 <td>DELETE</td>
-                <td>'users/:username/favorites/:ID'</td>
+                <td>'/users/:username/favorites/:movieID'</td>
                 <td>A text message indicating whether the movie was successfully removed</td>
             </tr>
             <tr>
