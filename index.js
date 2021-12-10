@@ -8,13 +8,13 @@ app.use(express.static('public'));
 
 let topMovies = [
   {
-    name: 'Movie1'
+    title: 'Movie1'
   },
   {
-    name: 'Movie2'
+    title: 'Movie2'
   },
   {
-    name: 'Movie3'
+    title: 'Movie3'
   }
 ];
 
