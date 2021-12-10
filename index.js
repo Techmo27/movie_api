@@ -47,11 +47,15 @@ app.put('/users/:username', (req, res) => {
   res.send('User has successfully changed her/his username!');
 });
 
-app.post('users/:username/movies/:movieID', (req, res) => {
+app.post('/users/:username/favorites', (req, res) => {
   res.send('User added one movie to her/his favorites list.');
 });
 
-app.delete('users/:username/movies/:movieID', (req, res) => {
+app.post('/users/:username/favorites/:movieID', (req, res) => {
+  res.send('User added one movie to her/his favorites list.');
+});
+
+app.delete('/users/:username/favorites/:movieID', (req, res) => {
   res.send('User has successfully deleted one movie from her/his favorites.');
 });
 
