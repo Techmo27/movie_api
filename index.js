@@ -31,11 +31,11 @@ app.get('/movies/:title', (req, res) => {
   res.send('Successful GET request which shows a movie by its title.');
 });
 
-app.get('/movies/genre/:title', (req, res) => {
+app.get('/genres/:genreName', (req, res) => {
   res.send('Successful GET request which describes the genre of a movie.');
 });
 
-app.get('/movies/directors/:name', (req, res) => {
+app.get('/directors/:directorName', (req, res) => {
   res.send('Successful GET request which introduces the director.');
 });
 
@@ -47,7 +47,7 @@ app.put('/users/:username', (req, res) => {
   res.send('User has successfully changed her/his username!');
 });
 
-app.get('/users/:username/movies', (req, res) => {
+app.get('/users/:username/favorites', (req, res) => {
   res.send('Successful GET request that returns a list of users favorites.');
 });
 
