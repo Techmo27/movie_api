@@ -91,7 +91,7 @@ app.get('/users', (req, res) => {
 });
 
 // Get a user by username
-app.get('/users/:username', (req, res) => {
+app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -101,8 +101,6 @@ app.get('/users/:username', (req, res) => {
       res.status(500).send('Error: ' + err);
     });
 });
-
-Let’s try this out with some of the data in your “Users” collection. First, let’s update the username of a specific user:
 
 // Update a user's info, by username
 
@@ -130,16 +128,40 @@ app.get('/users/:username/favorites', (req, res) => {
   res.send('Successful GET request that returns a list of users favorites.');
 });
 
-app.post('/users/:username/favorites/:movieID', (req, res) => {
-  res.send('User added one movie to her/his favorites list.');
+// Add a movie to a user's list of favorites
+app.post('/users/:Username/favorites/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+     $push: { FavoriteMovies: req.params.MovieID }
+   },
+   { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
 });
 
 app.delete('/users/:username/favorites/:movieID', (req, res) => {
   res.send('User has successfully deleted one movie from her/his favorites.');
 });
 
-app.delete('/users/:username', (req, res) => {
-  res.send('Users account has been deleted!');
+// Delete a user by username
+app.delete('/users/:Username', (req, res) => {
+  Users.findOneAndRemove({ Username: req.params.Username })
+    .then((user) => {
+      if (!user) {
+        res.status(400).send(req.params.Username + ' was not found');
+      } else {
+        res.status(200).send(req.params.Username + ' was deleted.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 app.use((err, req, res, next) => {
