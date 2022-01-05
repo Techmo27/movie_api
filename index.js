@@ -51,9 +51,9 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 app.get('/genres/:Genre', (req, res) => {
-  Movies.find({ 'Genre.Name': req.params.Name})
-    .then((GenreName) => {
-      res.json(GenreName);
+  Movies.findOne({ 'Genre.Name': req.params.Name})
+    .then((movie) => {
+      res.json(movie.Genre);
     })
     .catch((err) => {
       console.error(err);
@@ -62,9 +62,9 @@ app.get('/genres/:Genre', (req, res) => {
 });
 
 app.get('/directors/:Name', (req, res) => {
-  Movies.find({ 'Director.Name': req.params.Name})
-    .then((Directors) => {
-      res.json(Directors);
+  Movies.findOne({ 'Director.Name': req.params.Name})
+    .then((movie) => {
+      res.json(movie.Director);
     })
     .catch((err) => {
       console.error(err);
