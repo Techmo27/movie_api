@@ -23,6 +23,7 @@
                 <th>HTTP Method</th>
                 <th>URL</th>
                 <th>Response</th>
+                <th>Response Schema/ Data Type<th>
             </tr>
         </thead>
         <tbody>
@@ -31,66 +32,119 @@
                 <td>GET</td>
                 <td>'/'</td>
                 <td>A welcoming text message.</td>
+                <td>String</td>
+
             </tr>
             <tr>
                 <td>Return a list of all movies</td>
                 <td>GET</td>
                 <td>'/movies'</td>
-                <td>An array of JSON objects containing data about all the movies.</td>
+                <td>An array of JSON objects containing all data about all the movies.</td>
+                <td>[{"Movie1"}, {"Movie2"}...]
+                </td>
             </tr>
             <tr>
                 <td>Return data about a single movie by title</td>
                 <td>GET</td>
                 <td>'/movies/:title'</td>
-                <td>A JSON object holding the data about one single movie. It contains information about the title, genre, directors name and film length. It's structured as follows: { title: "Movie1", genre: "Comedy", director: "Tim Burton", film lenght: "120min"}</td>
+                <td>A JSON object holding the data about one single movie. It contains information about the title, genre, directors name and film length.</td>
+                <td>{
+                  Title: {type: String},
+                  Description: {type: String},
+                  Genre: {
+                    Name: String,
+                    Description: String
+                  },
+                  Director: {
+                    Name: String,
+                    Bio: String
+                  },
+                  Actors: [String],
+                  ImagePath: String,
+                  Featured: Boolean
+                </td>
             </tr>
             <tr>
                 <td>Return data about a genre by title</td>
                 <td>GET</td>
                 <td>'/genres/:genre'</td>
-                <td>A text message describing the particular genre</td>
+                <td>A JSON object describing the particular genre</td>
+                <td>{
+                  Name: String,
+                  Description: String
+                }</td>
             </tr>
             <tr>
                 <td>Return data about a director by name</td>
                 <td>GET</td>
                 <td>'/directors/:name'</td>
-                <td>A text message with information about the director (bio, birth year, death year).</td>
+                <td>A JSON object with information about the director.</td>
+                <td>{
+                  Name: String,
+                  Bio: String
+                }</td>
             </tr>
             <tr>
                 <td>Allow new users to register</td>
                 <td>POST</td>
                 <td>'/users'</td>
-                <td>A JSON object holding data about the user who has been added in the following structure { name: "Sophie Berger", username: "s.berger135", email: "sophieberger@gmail.com", password: "13579sb"}</td>
+                <td>A JSON object holding data about the user who has been added.</td>
+                <td>{
+                  Username: {type: String},
+                  Password: {type: String},
+                  Email: {type: String},
+                  Birthday: Date,
+                  FavoriteMovies: []
+                }
+                </td>
             </tr>
             <tr>
                 <td>Allow users to update their user info</td>
                 <td>PUT</td>
                 <td>'/users/:username'</td>
-                <td>A text message indicating which information about the user has been updated</td>
-            </tr>
-            <tr>
-                <td>Return users list of favorite movies</td>
-                <td>GET</td>
-                <td>'/users/:username/favorites'</td>
-                <td>An array of JSON objects containing data about all the favorite movies of the user</td>
-            </tr>
+                <td>A JSON object holding data about the user who's data has been updated.</td>
+                <td>{
+                  Username: {type: String},
+                  Password: {type: String},
+                  Email: {type: String},
+                  Birthday: Date,
+                  FavoriteMovies: []
+                }
+                </td>
             <tr>
                 <td>Allow users to add a movie to their list of favorites</td>
                 <td>POST</td>
                 <td>'/users/:username/favorites/:movieID'</td>
-                <td>A JSON object holding data about the movie tthat has been added to the list of favourites, like so: { title: "Movie1", genre: "Comedy", director: "Tim Burton", film lenght: "120min"}</td>
+                <td>A JSON object holding data about the user and her/his all favorite movies including the currently added.</td>
+                <td>{
+                  Username: {type: String},
+                  Password: {type: String},
+                  Email: {type: String},
+                  Birthday: Date,
+                  FavoriteMovies: [{Movie1}, {Movie2}...]
+                }
+                </td>
             </tr>
             <tr>
                 <td>Allow users to remove a movie to their list of favorites</td>
                 <td>DELETE</td>
                 <td>'/users/:username/favorites/:movieID'</td>
-                <td>A text message indicating whether the movie was successfully removed</td>
+                <td>A JSON object holding data about the user and her/his all favorite movies excluding the deleted one.</td>
+                <td>{
+                  Username: {type: String},
+                  Password: {type: String},
+                  Email: {type: String},
+                  Birthday: Date,
+                  FavoriteMovies: [{Movie1}, {Movie2}...]
+                }
+                </td>
             </tr>
             <tr>
                 <td>Allow existing users to deregister</td>
                 <td>DELETE</td>
                 <td>'/users/:username'</td>
-                <td>A text message indicating whether the users account is successfully deleted</td>
+                <td>A text message indicating the users account is successfully deleted</td>
+                <td>String</td>
             </tr>
         </tbody>
     </table>
