@@ -19,10 +19,6 @@ app.use(bodyParser.urlencoded({ extended:true }));
 
 app.use(morgan('common'));
 
-let Movie = mongoose.model('Movie', movieSchema);
-let User = mongoose.model('User', userSchema);
-
-
 // GET requests
 app.get('/', (req, res) => {
   res.send('Welcome to the myFlix app!');
@@ -50,7 +46,7 @@ app.get('/movies/:Title', (req, res) => {
     });
 });
 
-app.get('/genres/:Genre', (req, res) => {
+app.get('/genres/:Name', (req, res) => {
   Movies.findOne({ 'Genre.Name': req.params.Name})
     .then((movie) => {
       res.json(movie.Genre);
