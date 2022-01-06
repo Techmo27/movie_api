@@ -3772,3 +3772,17 @@ node_modules/pause/Makefile
 node_modules/pause/Readme.md
 package-lock.json
 package.json
+node_modules/@types/jsonwebtoken/index.d.ts
+node_modules/@types/jsonwebtoken/LICENSE
+node_modules/@types/jsonwebtoken/README.md
+node_modules/@types/passport-local/index.d.ts
+node_modules/@types/passport-local/LICENSE
+node_modules/@types/passport-local/README.md
+node_modules/@types/passport-strategy/index.d.ts
+node_modules/@types/passport-strategy/LICENSE
+node_modules/@types/passport-strategy/README.md
+node_modules/@types/passport/index.d.ts
+node_modules/@types/passport/LICENSE
+node_modules/@types/passport/README.md
+package-lock.json
+package.json
