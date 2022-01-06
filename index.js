@@ -4,7 +4,6 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
-
 const Models = require('./models.js');
 
 const Movies = Models.Movie;
@@ -13,18 +12,16 @@ const Users = Models.User;
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
-
+app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
-
-app.use(morgan('common'));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
 // show welcome message
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to the myFlix app!');
 });
 
