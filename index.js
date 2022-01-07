@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const bcrypt = require('bcrypt');
+const { check, validationResult } = require('express-validator');
 
 const bodyParser = require('body-parser');
 
@@ -88,7 +89,19 @@ app.get('/directors/:Name', passport.authenticate('jwt', { session: false }), (r
 });
 
 // Register a new user
-app.post('/users', (req, res) => {
+app.post('/users',
+[
+check('Username', 'Username is required').isLength({min: 5}),
+check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+check('Password', 'Password is required').not().isEmpty(),
+check('Email', 'Email does not appear to be valid').isEmail()
+], (req, res) => {
+// check the validation object for errors
+let errors = validationResult(req);
+
+if (!errors.isEmpty()) {
+  return res.status(422).json({ errors: errors.array() });
+}
   let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
@@ -140,11 +153,24 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 });
 
 // Update a user's info, by username
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
+  [
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+  // check the validation object for errors
+  let errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+    let hashedPassword = Users.hashPassword(req.body.Password);
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
