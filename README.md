@@ -1,7 +1,11 @@
-**Project DEscription**
+**Project Description**
 
 This project is a server-side component of a “movies” web application. The web application provides users with access to information about different
 movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite movies.
+
+The front-end projects building upon this API: 
+* https://github.com/Techmo27/myFlix-client
+* https://github.com/Techmo27/myFlix-Angular-client
 
 **Key Features**
 * Returns a list of ALL movies to the user
